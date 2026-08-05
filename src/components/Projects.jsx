@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { gsap, useReveal } from "../lib/motion";
+import { asset } from "../lib/asset";
 import "./Projects.css";
 
 const projects = [
@@ -51,7 +52,7 @@ export default function Projects() {
           <article key={project.title} className="project-card" data-reveal>
             <div className="project-image">
               <img
-                src={project.image}
+                src={asset(project.image)}
                 alt={project.alt}
                 width="900"
                 height="630"

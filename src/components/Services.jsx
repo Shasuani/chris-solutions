@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { gsap, useReveal } from "../lib/motion";
+import { asset } from "../lib/asset";
 import "./Services.css";
 
 const services = [
@@ -55,7 +56,7 @@ export default function Services() {
           <article key={service.title} className="service-card" data-reveal>
             <div className="service-media">
               <img
-                src={service.image}
+                src={asset(service.image)}
                 alt={service.alt}
                 width="900"
                 height="630"

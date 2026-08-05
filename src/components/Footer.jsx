@@ -1,5 +1,6 @@
 import React from "react";
 import { site, nav } from "../siteConfig";
+import { asset } from "../lib/asset";
 import Icon from "./Icon";
 import "./Footer.css";
 
@@ -26,7 +27,7 @@ export default function Footer() {
       <div className="footer-content">
         <div className="footer-about">
           <img
-            src="/images/logo.png"
+            src={asset("/images/logo.png")}
             alt={`${site.name} logo`}
             className="footer-logo"
             width="720"

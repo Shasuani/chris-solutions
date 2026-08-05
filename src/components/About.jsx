@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { gsap, useReveal } from "../lib/motion";
 import Icon from "./Icon";
+import { asset } from "../lib/asset";
 import "./About.css";
 
 const features = [
@@ -75,7 +76,7 @@ export default function About() {
 
         <div className="about-image" data-reveal>
           <img
-            src="/images/hero-panel.webp"
+            src={asset("/images/hero-panel.webp")}
             alt="Elektricien van Chris Solutions test een elektrisch verdeelbord"
             width="1290"
             height="708"

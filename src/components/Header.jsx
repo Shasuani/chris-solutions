@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { site, nav } from "../siteConfig";
+import { asset } from "../lib/asset";
 import Icon from "./Icon";
 import "./Header.css";
 
@@ -84,7 +85,7 @@ export default function Header() {
         }}
       >
         <img
-          src="/images/logo.png"
+          src={asset("/images/logo.png")}
           alt={`${site.name} — startpagina`}
           className="logo"
           width="720"
