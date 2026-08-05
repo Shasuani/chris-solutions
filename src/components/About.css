@@ -1,0 +1,94 @@
+.about {
+  padding: 100px 5%;
+  background: #fff;
+  /* The entrance tween slides these columns in along X, which pushes the
+     document wider and flashes a horizontal scrollbar. Clip it here rather
+     than on <body>, which would turn the whole page into a scroll container. */
+  overflow-x: hidden; /* fallback for Safari < 16 */
+  overflow-x: clip;
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.about-text .section-title {
+  margin-bottom: 24px;
+}
+
+.about-text > p {
+  font-size: 1.1rem;
+  color: var(--body);
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.about-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 36px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.feature-icon {
+  width: 50px;
+  height: 50px;
+  background: var(--brand-gradient);
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.feature-item h3 {
+  color: var(--ink);
+  margin-bottom: 5px;
+  font-size: 1.05rem;
+}
+
+.feature-item p {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.about-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 968px) {
+  .about {
+    padding: 70px 5%;
+  }
+
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* Image reads better above the supporting detail on narrow screens. */
+  .about-image {
+    order: -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .about-features {
+    grid-template-columns: 1fr;
+  }
+}

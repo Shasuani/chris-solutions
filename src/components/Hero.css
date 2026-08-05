@@ -1,0 +1,230 @@
+.hero {
+  min-height: calc(100vh - var(--header-h));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 80px 5%;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* The background lives on a pseudo-element instead of the section itself so
+   the image path stays relative to the public/ root and the overlay can be
+   tuned independently. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+      135deg,
+      rgba(0, 74, 173, 0.88),
+      rgba(225, 6, 0, 0.72)
+    ),
+    url("/images/hero-panel.webp") center / cover no-repeat;
+}
+
+/* Extra scrim behind the copy: the photo is busy and mid-toned, and the brand
+   gradient alone doesn't give the body text enough contrast on the left. */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.45) 0%,
+    rgba(0, 0, 0, 0.25) 45%,
+    transparent 75%
+  );
+}
+
+/* background-attachment: fixed is broken/janky on iOS Safari and on any
+   touch device, so the parallax is limited to precise-pointer devices. */
+@media (hover: hover) and (pointer: fine) {
+  .hero::before {
+    background-attachment: scroll, fixed;
+  }
+}
+
+.hero-content {
+  max-width: 720px;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+  border-radius: 30px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(4px);
+}
+
+.hero h1 {
+  font-size: clamp(2.1rem, 5.5vw, 3.5rem);
+  margin-bottom: 24px;
+  font-weight: 700;
+  line-height: 1.15;
+  text-wrap: balance;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+}
+
+.hero-lead {
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  margin-bottom: 36px;
+  line-height: 1.75;
+  opacity: 0.96;
+  max-width: 620px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.hero-buttons button {
+  padding: 16px 34px;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease,
+    box-shadow 0.3s ease;
+  font-size: 16px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  font-family: inherit;
+}
+
+.btn-red {
+  background: var(--red);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(225, 6, 0, 0.45);
+}
+
+.btn-red:hover {
+  background: #fff;
+  color: var(--red);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.25);
+}
+
+.btn-outline {
+  border-color: #fff;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.btn-outline:hover {
+  background: #fff;
+  color: var(--blue);
+  transform: translateY(-3px);
+}
+
+.hero-trust {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  margin-top: 40px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.hero-trust li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.95;
+}
+
+/* Same stroked checkmark as the SVG icon set, so the tick matches the rest of
+   the site instead of falling back to a platform glyph. */
+.hero-trust li::before {
+  content: "";
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4.5 12.5 5 5 10-11'/%3E%3C/svg%3E")
+    center / 12px 12px no-repeat;
+  flex-shrink: 0;
+}
+
+/* Floating particles */
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: hero-float 15s infinite ease-in-out;
+}
+
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(30px, -30px) scale(1.5);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-particles {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    align-items: center;
+    text-align: center;
+    padding: 60px 5%;
+  }
+
+  /* Copy is centred on mobile, so the scrim has to cover the full width. */
+  .hero::after {
+    background: rgba(0, 0, 0, 0.35);
+  }
+
+  .hero-lead {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .hero-buttons button {
+    padding: 14px 28px;
+    flex: 1 1 auto;
+    min-width: 200px;
+  }
+
+  .hero-trust {
+    justify-content: center;
+  }
+}
