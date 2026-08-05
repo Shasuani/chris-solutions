@@ -1,0 +1,392 @@
+.contact-section {
+  padding: 80px 5% 100px;
+  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(0, 74, 173, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(225, 6, 0, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.contact-section::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, rgba(0, 74, 173, 0.05), rgba(225, 6, 0, 0.05));
+  border-radius: 50%;
+  top: -200px;
+  right: -200px;
+  /* Renamed from `float`, which collided with the hero's particle keyframes —
+     whichever stylesheet loaded last silently won. */
+  animation: contact-orbit 20s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes contact-orbit {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(30px, 30px) rotate(180deg);
+  }
+}
+
+.contact-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.contact-header .section-title {
+  margin-bottom: 16px;
+}
+
+.contact-header p {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 700px;
+  margin: 20px auto 0;
+  line-height: 1.7;
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 50px;
+  align-items: start;
+}
+
+.contact-info-side {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info-block {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.info-block:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  border-color: #004aad;
+  transform: translateY(-2px);
+}
+
+.info-icon {
+  width: 50px;
+  height: 50px;
+  background: var(--brand-gradient);
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.info-content h3 {
+  color: var(--ink);
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+.info-content a {
+  color: #004aad;
+  text-decoration: none;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+.info-content a:hover {
+  color: #e10600;
+}
+
+.info-content p {
+  color: #666;
+  margin: 0;
+}
+
+.info-note {
+  display: block;
+  font-size: 0.85rem;
+  color: #999;
+  margin-top: 4px;
+}
+
+.emergency-card {
+  background: linear-gradient(135deg, #004aad, #e10600);
+  padding: 28px;
+  border-radius: 12px;
+  color: white;
+  margin-top: 10px;
+}
+
+.emergency-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.emergency-icon {
+  flex-shrink: 0;
+  color: #fff;
+}
+
+.emergency-header h3 {
+  color: white;
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.emergency-card p {
+  margin-bottom: 16px;
+  opacity: 0.95;
+  line-height: 1.6;
+}
+
+.emergency-btn {
+  display: block;
+  background: white;
+  color: #e10600;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.emergency-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.contact-form-side {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Spam honeypot: off-screen rather than display:none, since some bots skip
+   fields that are not rendered at all. */
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group label {
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #004aad;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(0, 74, 173, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.error-input {
+  border-color: #e10600 !important;
+  background: #fff5f5 !important;
+}
+
+.error-msg {
+  color: #e10600;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: -4px;
+}
+
+.submit-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #004aad, #e10600);
+  color: white;
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 74, 173, 0.3);
+  margin-top: 8px;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(0, 74, 173, 0.4);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-message {
+  padding: 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+  animation: slideDown 0.3s ease;
+  margin-top: 16px;
+  line-height: 1.6;
+}
+
+.success-message {
+  background: #d4edda;
+  color: #155724;
+}
+
+.error-message {
+  background: #fdecea;
+  color: #8a1c14;
+}
+
+.error-message a {
+  color: inherit;
+  font-weight: 700;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tablet */
+@media (max-width: 968px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .contact-info-side {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .emergency-card {
+    grid-column: 1 / -1;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .contact-section {
+    padding: 60px 5%;
+  }
+
+  .contact-header h2 {
+    font-size: 2rem;
+  }
+
+  .contact-header p {
+    font-size: 1rem;
+  }
+
+  .contact-info-side {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form-side {
+    padding: 24px;
+  }
+
+  .info-block {
+    padding: 20px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  .submit-btn {
+    padding: 14px;
+    font-size: 1rem;
+  }
+}
